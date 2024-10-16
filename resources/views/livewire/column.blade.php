@@ -13,7 +13,7 @@
                     x-on:click="editing = true"
                     x-show="!editing"
                 >
-                Column Title
+               {{ $column->title}}
             </button>
             
             <template x-if="editing">
