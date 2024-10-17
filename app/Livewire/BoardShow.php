@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Forms\CreateColumn;
 use App\Models\Board;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,8 @@ class BoardShow extends Component
 {
     public Board $board;
 
+    public CreateColumn $createColumnForm;
+
     public function mount()
     {  
         $this->authorize('show', $this->board);
@@ -23,7 +26,7 @@ class BoardShow extends Component
         $order = collect($items)->pluck('value')->toArray();
 
         \App\Models\Column::setNewOrder($order, 1, 'id', function (Builder $query) {
-            $query->where('user_id', Auth::id());
+            $query->whereBelongsTo(Auth::id());
         });
     }
 
@@ -52,6 +55,20 @@ class BoardShow extends Component
             // get order of cards inside that columns.
 
       });
+    }
+
+    public function createColumn()
+    {
+        $this->createColumnForm->validate();
+
+        $column = $this->board->columns()->make($this->createColumnForm->only('title'));
+        $column->user()->associate(Auth::user());
+       
+        $column->save();
+
+        $this->createColumnForm->reset();
+
+        $this->dispatch('column-created');
     }
 
     #[Layout('layouts.app')]
