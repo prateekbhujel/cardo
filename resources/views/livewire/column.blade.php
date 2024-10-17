@@ -46,12 +46,15 @@
 
     </div>
 
-   <div class="p-3 space-y-1.5 pt-0 overflow-y-scroll">
-    @foreach ($cards as $card)
-
-        <livewire:card wire:key="$card->id" :card="$card" />
-            
-    @endforeach
+   <div 
+        class="p-3 space-y-1.5 pt-0 overflow-y-scroll"
+        wire:sortable-group.item-group="{{ $column->id }}"
+   >
+        @foreach ($cards as $card)
+            <div wire:key="{{ $card->id }}" wire:sortable-group.item="{{ $card->id }}">
+                <livewire:card :key="$card->id" :card="$card" />
+            </div>
+        @endforeach
    </div>
 
    <div class="p-3">create card</div>
