@@ -19,4 +19,8 @@ class Card extends Model implements Sortable
         'sort_when_creating'    => true,
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -22,30 +22,30 @@
                 x-on:column-created.window="adding = false"
             >
 
-            <template x-if="adding">
-            
-                <form wire:submit="createColumn" 
-                    class="bg-white shadow-sm px-4 py-3 rounded-lg w-[260px]"
+                <template x-if="adding">
                 
-                >
-
-                    <div>
-                        <x-input-label for="title" value="Title" class="sr-only"/>
-                        <x-text-input id="title" placeholder="colun title" class="w-full" wire:model="createColumnForm.title" x-init="$el.focus()" />
-                        <x-input-error :messages="$errors->get('createColumnForm.title')" class="mt-1" />
-                    </div>
+                    <form wire:submit="createColumn" 
+                        class="bg-white shadow-sm px-4 py-3 rounded-lg w-[260px]"
                     
-                    <div class="flex items-center space-x-2 mt-2">
-                        <x-primary-button class="text-sm">
-                            create
-                        </x-primary-button>
-                        
-                        <button x-on:click="adding = false" type="button" class="text-sm text-gray-500">Cancel</button>
-                    </div>
+                    >
 
-                </form>
-            
-            </template>
+                        <div>
+                            <x-input-label for="title" value="Title" class="sr-only"/>
+                            <x-text-input id="title" placeholder="colun title" class="w-full" wire:model="createColumnForm.title" x-init="$el.focus()" />
+                            <x-input-error :messages="$errors->get('createColumnForm.title')" class="mt-1" />
+                        </div>
+                        
+                        <div class="flex items-center space-x-2 mt-2">
+                            <x-primary-button class="text-sm">
+                                create
+                            </x-primary-button>
+                            
+                            <button x-on:click="adding = false" type="button" class="text-sm text-gray-500">Cancel</button>
+                        </div>
+
+                    </form>
+                
+                </template>
 
                 <button x-show="!adding" x-on:click="adding = true"
                 class="bg-gray-200 shadow-sm px-4 py-3 flex items-center space-x-1 rounded-lg w-[260px]"
