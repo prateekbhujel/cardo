@@ -1,3 +1,3 @@
-<div>
+<x-modal-wrapper title="Edit Card">
     {{ $card->title }}
-</div>
+</x-modal-wrapper>
