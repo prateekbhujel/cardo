@@ -17,7 +17,7 @@
                 Save
             </x-primary-button>
 
-            <x-secondary-button>
+            <x-secondary-button wire:click="archiveCard">
                 Archive
             </x-secondary-button>
         </div>
