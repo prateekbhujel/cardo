@@ -16,6 +16,10 @@ class BoardShow extends Component
 
     public CreateColumn $createColumnForm;
 
+    protected $listeners = [
+        'board-updated' => '$refresh'
+    ];
+
     public function mount()
     {  
         $this->authorize('show', $this->board);
@@ -75,7 +79,7 @@ class BoardShow extends Component
     public function render()
     {
         return view('livewire.board-show', [
-            'columns' => $this->board->columns()->ordered()->get(),
+            'columns' => $this->board->columns()->ordered()->notArchived()->get(),
         ]);
     }
 }

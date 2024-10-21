@@ -38,7 +38,9 @@
                 </x-slot>
 
                 <x-slot name="content">
-                    dropdown content
+                    <x-dropdown-button wire:click="archivedColumn">
+                        Archive
+                    </x-dropdown-button>
                 </x-slot>
 
             </x-dropdown>

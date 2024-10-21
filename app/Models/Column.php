@@ -13,13 +13,22 @@ class Column extends Model implements Sortable
     use SortableTrait;
     use HasFactory;
 
-    protected $guarded = ['id'];
-
     public $sortable = [
         'order_column_name'     => 'order',
         'sort_when_creating'    => true,
     ];  
+
+    protected $guarded = ['id'];
     
+    protected $casts = [
+        'archived_at' => 'datetime'
+    ];
+
+    public function scopeNotArchived(Builder $query)
+    {
+        $query->whereNull('archived_at');
+    }
+
     public function cards() 
     {
         return $this->hasMany(Card::class);
