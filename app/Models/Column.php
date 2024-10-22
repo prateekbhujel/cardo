@@ -34,6 +34,11 @@ class Column extends Model implements Sortable
         $query->whereNotNull('columns.archived_at');
     }
 
+    public function scopeLatestArchived(Builder $query)
+    {
+        $query->orderBy('columns.archived_at', 'desc');
+    }
+
     public function cards() 
     {
         return $this->hasMany(Card::class);
