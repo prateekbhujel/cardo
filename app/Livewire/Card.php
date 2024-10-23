@@ -8,6 +8,7 @@ use App\Models\Card as CardModel;
 class Card extends Component
 {
     public CardModel $card;
+    
     public $listeners = [
         'card-{card.id}-updated' => '$refresh'
     ];

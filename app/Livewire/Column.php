@@ -27,6 +27,8 @@ class Column extends Component
 
     public function archivedColumn() 
     {
+        $this->authorize('archive', $this->column);
+
        $this->column->update([
             'archived_at' => now()
        ]);
@@ -36,6 +38,8 @@ class Column extends Component
 
     public function updateColumn()
     {
+        $this->authorize('update', $this->column);
+
         $this->editColumnForm->validate();
 
         $this->column->update($this->editColumnForm->only('title'));
@@ -45,6 +49,7 @@ class Column extends Component
 
     public function createCard()
     {
+        $this->authorize('createCard', $this->column);
         $this->createCardForm->validate();
 
         $card = $this->column->cards()->make($this->createCardForm->only('title'));
