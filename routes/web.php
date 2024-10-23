@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::get('/boards/{board}', BoardShow::class);
+Route::get('/boards/{board}', BoardShow::class)
+            ->middleware(['auth', 'verified'])
+            ->name('boards.show');
 
 Route::get('/dashboard', BoardIndex::class)
     ->middleware(['auth', 'verified'])
