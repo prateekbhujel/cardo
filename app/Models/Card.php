@@ -26,6 +26,11 @@ class Card extends Model implements Sortable
         'archived_at' => 'datetime'
     ];
 
+    public function buildSortQuery(): Builder
+    {
+        return static::query()->where('column_id', $this->column_id);
+    }
+
     public function scopeNotArchive(Builder $query)
     {
         $query->whereNull('cards.archived_at');

@@ -24,6 +24,11 @@ class Column extends Model implements Sortable
         'archived_at' => 'datetime'
     ];
 
+    public function buildSortQuery(): Builder
+    {
+        return static::query()->where('board_id', $this->board_id);
+    }
+    
     public function scopeNotArchived(Builder $query)
     {
         $query->whereNull('columns.archived_at');
